@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		movement = Input.GetAxisRaw("Horizontal") * speed;
+		movement = Input.GetAxis("Horizontal") * speed;
 	}
 
 	void FixedUpdate()
