@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -16,5 +17,14 @@ public class Player : MonoBehaviour {
 	void FixedUpdate()
 	{
 		rb.MovePosition(rb.position + new Vector2 (movement * Time.fixedDeltaTime, 0f));
+	}
+
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if(col.collider.tag == "Ball")
+		{
+			Debug.Log("GAME OVER!");
+			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
+		}
 	}
 }
