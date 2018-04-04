@@ -8,19 +8,34 @@ public class Player : MonoBehaviour {
 	public Rigidbody2D rb;
 
 	public GameObject gameOver;
+	public GameObject start;
+	public GameObject tutorial;
 	public bool lost;
+	public bool isStart;
 
 	private float movement = 0f;
 
 	void Start()
 	{
 		gameOver.SetActive(false);
+		start.SetActive(true);
+		tutorial.SetActive(true);
+		Time.timeScale = 0;
 		lost = false;
+		isStart = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		movement = Input.GetAxis("Horizontal") * speed;
+
+		if(Input.anyKey && !isStart)
+		{	
+			Time.timeScale = 1;
+			start.SetActive(false);
+			tutorial.SetActive(false);
+			isStart = true;
+		}
 
 		if(Input.anyKey && lost)
 		{	
