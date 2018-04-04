@@ -7,11 +7,28 @@ public class Player : MonoBehaviour {
 
 	public Rigidbody2D rb;
 
+	public GameObject gameOver;
+	public bool lost;
+
 	private float movement = 0f;
+
+	void Start()
+	{
+		gameOver.SetActive(false);
+		lost = false;
+	}
 
 	// Update is called once per frame
 	void Update () {
 		movement = Input.GetAxis("Horizontal") * speed;
+
+		if(Input.anyKey && lost)
+		{	
+			Debug.Log("restart");
+			lost = false;
+			Time.timeScale = 1;
+			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
+		}
 	}
 
 	void FixedUpdate()
@@ -24,7 +41,9 @@ public class Player : MonoBehaviour {
 		if(col.collider.tag == "Ball")
 		{
 			Debug.Log("GAME OVER!");
-			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
+			gameOver.SetActive(true);
+			Time.timeScale = 0;	
+			lost = true;
 		}
 	}
 }
