@@ -4,15 +4,12 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour {
 
 	public float speed = 4f;
-
 	public Rigidbody2D rb;
-
 	public GameObject gameOver;
 	public GameObject start;
 	public GameObject tutorial;
 	public bool lost;
 	public bool isStart;
-
 	private float movement = 0f;
 
 	void Start()
